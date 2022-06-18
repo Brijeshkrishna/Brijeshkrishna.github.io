@@ -56,7 +56,7 @@ def generate_img(filename="background.webp", dir="./", id=None, width=2400, heig
     for _ in tqdm(
         range(0, gen.integers(0, height) * gen.integers(0, width)),
         desc=f"Generating Image... [{id}]",
-        leave=0
+        leave=1
      
     ):
         img.putpixel(

@@ -1493,6 +1493,10 @@
    width: 415px;
    height: 135px;
  }
+ .status_img {
+  padding-bottom: 15px;
+  padding-right: 15px;
+}
  
  .logos {
    width: 136px;

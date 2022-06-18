@@ -52,7 +52,7 @@ def generate_img(filename="background.webp", dir="./", id=None, width=2400, heig
     #     (width, height),
     #     (30, 30,32),
     # )
-    total = 100  #gen.integers(0, height) * gen.integers(0, width)
+    total = gen.integers(0, height) * gen.integers(0, width) % 15000
     for _ in tqdm(
         range(0,total),
         desc=f"Generating Image... [{id}]",

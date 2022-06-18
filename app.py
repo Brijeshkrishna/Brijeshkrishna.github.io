@@ -35,7 +35,7 @@ certificate_list=json.loads(get_certificate())
 
 
 
-def generate_img(filename="background.jpeg", dir="./", id=None, width=2400, height=1350):
+def generate_img(filename="background.webp", dir="./", id=None, width=2400, height=1350):
 
     global img_stack_progress
     img_stack_progress.append(id)
@@ -64,14 +64,14 @@ def generate_img(filename="background.jpeg", dir="./", id=None, width=2400, heig
             (gen.integers(0, 255), gen.integers(0, 255), gen.integers(0, 255)),
         )
 
-    img.save(filename)
+    img.save(filename, format="webp")
     img_stack_progress.remove(id)
 
 
 
 
 def generate_img_thread(id):
-    img_id = "background" + str(id) + ".jpeg"
+    img_id = "background" + str(id) + ".webp"
     f = threading.Thread(target=generate_img, args=(img_id, "static/imgs/", id))
     f.start()
 
@@ -79,7 +79,7 @@ def generate_img_thread(id):
 def generate_img_init(no):
     global img_stack
     for i in range(0, no):
-        generate_img( "background" + str(i) + ".jpeg","static/imgs/",i)
+        generate_img( "background" + str(i) + ".webp","static/imgs/",i)
         img_stack.append(i)
 
 
@@ -105,7 +105,7 @@ generate_img_init(int(os.environ['IMAGES_COUNT']))
 def response():
     global certificate_list
 
-    img_id = "static/imgs/background" + str(remove_images()) + ".jpeg"
+    img_id = "static/imgs/background" + str(remove_images()) + ".webp"
 
     return render_template(
         "./index.html",

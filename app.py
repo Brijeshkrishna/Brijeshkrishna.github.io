@@ -4,7 +4,6 @@ from PIL import Image
 import numpy as np
 import json
 from tqdm import tqdm
-import requests
 import time
 import dotenv
 import os
@@ -14,31 +13,29 @@ dotenv.load_dotenv()
 app = Flask(__name__, template_folder="template", static_folder="static")
 
 
-global img_stack
-global img_stack_progress
-global repos_list
-global requests_ss
-global certificate_list
-
+global IMG_STACK
+global IMG_STACK_PROGRESS
+global REPOS_LIST
+global CERTIFICATE_LIST
+global PROCESS_IMG
 
 def get_certificate():
     with open("cert.json", "r") as f:
         return f.read()
 
 
-repos_list = []
-img_stack = []
-img_stack_progress = []
-requests_ss = requests.Session()
-certificate_list=json.loads(get_certificate())
-
+REPOS_LIST = []
+IMG_STACK = []
+IMG_STACK_PROGRESS = []
+CERTIFICATE_LIST=json.loads(get_certificate())
+PROCESS_IMG=int(os.environ['PROCESS_IMG'])
 
 
 
 def generate_img(filename="background.webp", dir="./", id=None, width=2400, height=1350):
 
-    global img_stack_progress
-    img_stack_progress.append(id)
+    global IMG_STACK_PROGRESS
+    IMG_STACK_PROGRESS.append(id)
     filename = dir + filename
 
     gen = np.random.default_rng(int(time.perf_counter_ns()))
@@ -52,7 +49,7 @@ def generate_img(filename="background.webp", dir="./", id=None, width=2400, heig
     #     (width, height),
     #     (30, 30,32),
     # )
-    total = gen.integers(0, height) * gen.integers(0, width) % 15000
+    total = gen.integers(0, height) * gen.integers(0, width) % PROCESS_IMG
     for _ in tqdm(
         range(0,total),
         desc=f"Generating Image... [{id}]",
@@ -65,7 +62,7 @@ def generate_img(filename="background.webp", dir="./", id=None, width=2400, heig
         )
 
     img.save(filename, format="webp")
-    img_stack_progress.remove(id)
+    IMG_STACK_PROGRESS.remove(id)
 
 
 
@@ -77,53 +74,45 @@ def generate_img_thread(id):
 
 
 def generate_img_init(no):
-    global img_stack
+    global IMG_STACK
     for i in range(0, no):
         generate_img( "background" + str(i) + ".webp","static/imgs/",i)
-        img_stack.append(i)
+        IMG_STACK.append(i)
 
 
 def remove_images():
-    global img_stack
-    img_id = np.random.default_rng(int(time.perf_counter_ns())).integers(0, img_stack.__len__())
-   
-
-    if not (img_id in img_stack_progress):
+    global IMG_STACK
+    img_id = np.random.default_rng(int(time.perf_counter_ns())).integers(0, IMG_STACK.__len__())
+    if not (img_id in IMG_STACK_PROGRESS):
         generate_img_thread(img_id)
-
     return img_id
 
-
-
-print("Running")
 generate_img_init(int(os.environ['IMAGES_COUNT']))
-print("Running")
 
 
-
-
+print("Server started.. 👍")
 @app.route("/")
 def response():
-    global certificate_list
+    global CERTIFICATE_LIST
 
     img_id = "static/imgs/background" + str(remove_images()) + ".webp"
 
     return render_template(
         "./index.html",
         img_id=img_id,
-        cert_data=certificate_list)
+        cert_data=CERTIFICATE_LIST)
 
 
 # import requests
 
 
 
-# def get_repos(requests_session: requests.Session, repos_list):
+# def get_repos(requests_session: requests.Session, REPOS_LIST):
 #     for items in requests_session.get(
 #         "https://api.github.com/users/brijeshkrishna/repos"
 #     ).json():
-#         if items not in repos_list:
-#             repos_list.append(items['name'])
+#         if items not in REPOS_LIST:
+#             REPOS_LIST.append(items['name'])
 
 
-#     return repos_list
+#     return REPOS_LIST

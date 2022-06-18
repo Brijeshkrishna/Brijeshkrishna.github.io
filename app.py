@@ -35,7 +35,7 @@ certificate_list=json.loads(get_certificate())
 
 
 
-def generate_img(filename="background.jpg", dir="./", id=None, width=2400, height=1350):
+def generate_img(filename="background.webp", dir="./", id=None, width=2400, height=1350):
 
     global img_stack_progress
     img_stack_progress.append(id)
@@ -71,7 +71,7 @@ def generate_img(filename="background.jpg", dir="./", id=None, width=2400, heigh
 
 
 def generate_img_thread(id):
-    img_id = "background" + str(id) + ".jpg"
+    img_id = "background" + str(id) + ".webp"
     f = threading.Thread(target=generate_img, args=(img_id, "static/imgs/", id))
     f.start()
 
@@ -105,7 +105,7 @@ generate_img_init(int(os.environ['IMAGES_COUNT']))
 def response():
     global certificate_list
 
-    img_id = "static/imgs/background" + str(remove_images()) + ".jpg"
+    img_id = "static/imgs/background" + str(remove_images()) + ".webp"
 
     return render_template(
         "./index.html",

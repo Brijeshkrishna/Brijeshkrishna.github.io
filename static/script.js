@@ -33,5 +33,4 @@ async function  repository_fill  (){
 
 	
 }
-repository_fill();
-
+setTimeout( repository_fill(), 100);

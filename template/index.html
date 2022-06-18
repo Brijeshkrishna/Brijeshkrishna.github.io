@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" style="font-family: 'Electrolize', sans-serif;">
+
+<head>
+	<title>[ { ] }</title>
+	<meta charset="utf-8">
+	<meta content="width=device-width,initial-scale=1" name="viewport">
+	<meta content="ie=edge" http-equiv="x-ua-compatible">
+	<meta content="My view" name="description">
+	<meta content="Brijesh" name="author">
+	<link href="static/imgs/favicon.png" rel="icon" type="image/png">
+	<link href="static/style.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+</head>
+
+<body data-offset="100" data-spy="scroll" data-target="#top-navbar">
+	<div class="container-fluid home" id="home">
+		<div class="background container-fluid" style="background-image:url({{img_id}})"></div>
+		<div class="container content text-center">
+			<img alt="#" class="rounded-circle mx-auto d-block img-fluid" onmouseover="move()" src="static/imgs/favicon.png"
+				style="background-color: rgb(43, 39, 39);" onmouseleave="remove()">
+			<h1 id='move'></h1>
+			<h1 class="greeting" id="texter" style="font-family: 'Electrolize', sans-serif;"> 👋 Hi , I am <strong>Brijesh</strong></h1>
+		</div>
+	</div>
+
+
+
+
+	<div class="diver">
+		<div class="certifi" style="padding-bottom: 15px; padding-top: 50px; padding-left: 4%; background:#1e1e20;">
+
+			<hr>
+			<b style="font-size: 35px;color:antiquewhite;font-family: 'Electrolize', sans-serif;">Repos</b>
+			<hr>
+			<div style="padding-left:2.083%;" id="table-repos_list">
+
+
+
+			</div>
+
+
+
+		</div>
+		<div style="padding-bottom: 15px; padding-left: 4%; background:#1e1e20;">
+			<br>
+			<hr>
+			<b style="font-size: 35px;color:antiquewhite;font-family: 'Electrolize', sans-serif;">Stats</b>
+			<hr>
+			<div style="padding-left:2.083%">
+
+				<img class="repo_img"
+					src='https://github-profile-trophy.vercel.app/?username=brijeshkrishna&theme=onedark&margin-w=10&margin-h=10'>
+				<br><br>
+				<img class="repo_img"
+					src='https://github-readme-streak-stats.herokuapp.com/?user=brijeshkrishna&theme=ads-juicy-fresh&date_format=j%20M%5B%20Y%5D'>
+				<br><br>
+				<img class="repo_img"
+					src='https://github-readme-stats.vercel.app/api/top-langs/?username=brijeshkrishna&layout=compact&theme=aura'>
+				<br><br>
+				<img class="repo_img"
+					src='https://github-readme-stats.vercel.app/api?username=brijeshkrishna&theme=nightowl&show_icons=true&count_private=true'>
+
+			</div>
+
+		</div>
+
+		<div style="background:#1e1e20;padding-top: 45px; padding-left: 4%; padding-right:4%;">
+			<br>
+			<b style="font-size: 35px;color:antiquewhite;font-family: 'Electrolize', sans-serif;">Certifications</b>
+			<hr>
+			<table style=" width: 95%;">
+				{% for data in cert_data['certificates'] %}
+				<tbody>
+					<tr>
+						<td class="c-heading">{{data['date'] }}</td>
+					</tr>
+					<tr>
+						<td class="c-main">{{data['name']}}</td>
+						<td class="tdr"><button class="btn-certi" onclick="openTab(this)"
+								style="background-color: chartreuse;"><a href="{{data['view']}}" rel="noreferrer"
+									target="_blank">Certificate</a></button></td>
+					</tr>
+					<tr>
+						<td class="c-des" style="font-family: Courier New,Courier; color: white;">{{data['from']}}</td>
+					</tr>
+				</tbody>
+				{% endfor %}
+
+
+
+			</table><br>
+		</div>
+
+	</div>
+	</div>
+	<div style=" padding-left: 62px;padding-top:35px ;background-image:linear-gradient( #1e1e20 ,#006857, #1e1e20);">
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" />
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" />
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg" />
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" />
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" />
+
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" />
+
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" />
+
+		<img class="logos"
+			src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg" />
+
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" />
+
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg" />
+
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" />
+
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" />
+
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/embeddedc/embeddedc-original.svg" />
+
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" />
+
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" />
+
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" />
+
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" />
+
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg" />
+
+		<img class="logos" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" />
+
+
+
+
+	</div>
+
+	<!-- Footer -->
+	</div>
+	<footer class="container-fluid text-center align-content-center footer pb-2" style="background:#1e1e20">
+		<div class="container pt-5"></div>
+		<hr>
+		<div class="container">
+			<div class="row text-left">
+				<div>
+					<a href="https://github.com/Brijeshkrishna" id="footertitle" name='footertitle' target="_blank" style='color: #ffc107;'>Brijeshkrishna</a>
+				</div>
+			</div>
+			<div>
+				2021 All Rights Reserved ©
+			</div>
+		</div>
+	</footer>
+	<!-- Footer / -->
+	<script src="static/script.js" type="text/javascript"></script>
+
+</body>
+</html>

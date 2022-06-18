@@ -95,8 +95,9 @@ def remove_images():
 
 
 
-
+print("Running")
 generate_img_init(int(os.environ['IMAGES_COUNT']))
+print("Running")
 
 
 

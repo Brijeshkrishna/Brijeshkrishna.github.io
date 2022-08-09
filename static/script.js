@@ -1,36 +1,41 @@
 function move() {
-	var apperer = document.getElementById('move');
-	var text = document.getElementById('texter');
-	apperer.innerHTML = "I<b> Can't</b> see U 🙈 "
-	text.innerHTML = " "
+  var apperer = document.getElementById("move");
+  var text = document.getElementById("texter");
+  apperer.innerHTML = "I<b> Can't</b> see U 🙈 ";
+  text.innerHTML = " ";
 }
 
 function remove() {
-	var apperer = document.getElementById('move');
-	var text = document.getElementById('texter');
-	apperer.innerHTML = ""
-	text.innerHTML = 'Hi , I am Brijesh'
+  var apperer = document.getElementById("move");
+  var text = document.getElementById("texter");
+  apperer.innerHTML = "";
+  text.innerHTML = "Hi , I am Brijesh";
 }
 
-async function  repository_fill  (){
-	const response = await fetch("https://api.github.com/users/brijeshkrishna/repos?sort=updated&direction=desc");
-	const myJson = await response.json();
-	console.log(myJson);
-	
-	var table_row = document.getElementById("table-repos_list");
-	
+async function repository_fill() {
+  const response = await fetch(
+    "https://api.github.com/users/brijeshkrishna/repos?sort=updated&direction=desc"
+  );
+  const myJson = await response.json();
+  console.log(myJson);
 
-	for (var i = 0; i < 12; i++) {
-		var tbody = document.createElement("a");
-		tbody.setAttribute('href', 'https://github.com/Brijeshkrishna/'+myJson[i]['name']);
-		tbody.setAttribute('target', '_blank');
+  var table_row = document.getElementById("table-repos_list");
 
-		tbody.innerHTML = '<img class="repo_img" src="https://github-readme-stats.vercel.app/api/pin/?username=brijeshkrishna&repo=' + myJson[i]['name'] + '&theme=aura" alt="'+ myJson[i]['name']+ '">';
-		table_row.appendChild(tbody);
+  for (var i = 0; i < 12; i++) {
+    var tbody = document.createElement("a");
+    tbody.setAttribute(
+      "href",
+      "https://github.com/Brijeshkrishna/" + myJson[i]["name"]
+    );
+    tbody.setAttribute("target", "_blank");
 
-	}
-
-
-	
+    tbody.innerHTML =
+      '<img class="repo_img" src="https://github-readme-stats.vercel.app/api/pin/?username=brijeshkrishna&repo=' +
+      myJson[i]["name"] +
+      '&theme=aura" alt="' +
+      myJson[i]["name"] +
+      '">';
+    table_row.appendChild(tbody);
+  }
 }
 repository_fill();

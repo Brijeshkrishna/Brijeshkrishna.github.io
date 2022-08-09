@@ -32,11 +32,14 @@ PROCESS_IMG=int(os.environ['PROCESS_IMG'])
 
 
 
-def generate_img(filename="background.webp", dir="./", id=None, width=2400, height=1350):
+def generate_img(filename="background.webp", dir="./", id=None):
 
     global IMG_STACK_PROGRESS
     IMG_STACK_PROGRESS.append(id)
     filename = dir + filename
+
+    width=2400 
+    height=1350
 
     gen = np.random.default_rng(int(time.perf_counter_ns()))
     img = Image.new(
@@ -49,7 +52,7 @@ def generate_img(filename="background.webp", dir="./", id=None, width=2400, heig
     #     (width, height),
     #     (30, 30,32),
     # )
-    total = gen.integers(0, height) * gen.integers(0, width) % PROCESS_IMG
+    total = PROCESS_IMG #gen.integers(0, height) * gen.integers(0, width) % PROCESS_IMG
     for _ in tqdm(
         range(0,total),
         desc=f"Generating Image... [{id}]",
@@ -69,7 +72,7 @@ def generate_img(filename="background.webp", dir="./", id=None, width=2400, heig
 
 def generate_img_thread(id):
     img_id = "background" + str(id) + ".webp"
-    f = threading.Thread(target=generate_img, args=(img_id, "static/imgs/", id))
+    f = threading.Thread(target=generate_img, args=(img_id, "static/imgs/", id),daemon=True)
     f.start()
 
 
@@ -96,23 +99,10 @@ def response():
     global CERTIFICATE_LIST
 
     img_id = "static/imgs/background" + str(remove_images()) + ".webp"
+    if not os.path.exists(img_id):
+        img_id = "static/imgs/background.webp"
 
     return render_template(
         "./index.html",
         img_id=img_id,
         cert_data=CERTIFICATE_LIST)
-
-
-# import requests
-
-
-
-# def get_repos(requests_session: requests.Session, REPOS_LIST):
-#     for items in requests_session.get(
-#         "https://api.github.com/users/brijeshkrishna/repos"
-#     ).json():
-#         if items not in REPOS_LIST:
-#             REPOS_LIST.append(items['name'])
-
-
-#     return REPOS_LIST

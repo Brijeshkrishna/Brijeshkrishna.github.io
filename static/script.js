@@ -13,14 +13,14 @@ function remove() {
 }
 
 async function  repository_fill  (){
-	const response = await fetch("https://api.github.com/users/brijeshkrishna/repos");
+	const response = await fetch("https://api.github.com/users/brijeshkrishna/repos?sort=updated&direction=desc");
 	const myJson = await response.json();
 	console.log(myJson);
 	
 	var table_row = document.getElementById("table-repos_list");
 	
 
-	for (var i = 0; i < myJson.length; i++) {
+	for (var i = 0; i < 12; i++) {
 		var tbody = document.createElement("a");
 		tbody.setAttribute('href', 'https://github.com/Brijeshkrishna/'+myJson[i]['name']);
 		tbody.setAttribute('target', '_blank');

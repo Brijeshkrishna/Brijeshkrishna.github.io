@@ -7,6 +7,7 @@
    color: #212529;
    text-align: left;
    background-color: #1e1e20;
+   margin: 0,0,0,0;
  }
 
  
@@ -102,30 +103,7 @@
    margin-left: auto
  }
  
- @media (min-width:576px) {
-   .container {
-	 max-width: 540px
-   }
- }
- 
- @media (min-width:768px) {
-   .container {
-	 max-width: 720px
-   }
- }
- 
- @media (min-width:992px) {
-   .container {
-	 max-width: 960px
-   }
- }
- 
- @media (min-width:1200px) {
-   .container {
-	 max-width: 1140px
-   }
- }
- 
+
  .container-fluid {
    width: 100%;
    padding-right: 15px;

@@ -5,10 +5,10 @@ import numpy as np
 import json
 from tqdm import tqdm
 import time
-# import dotenv
+import dotenv
 import os
 
-# dotenv.load_dotenv()
+dotenv.load_dotenv()
 
 app = Flask(__name__, template_folder="template", static_folder="static")
 

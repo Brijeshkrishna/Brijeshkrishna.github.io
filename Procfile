@@ -1,1 +1,1 @@
-web: gunicorn main:app 0.0.0.0:$PORT --timeout 99999
+web: gunicorn app:app 0.0.0.0:$PORT --timeout 99999

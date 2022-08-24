@@ -100,3 +100,5 @@ def response():
         img_id = "static/imgs/background.webp"
 
     return render_template("./index.html", img_id=img_id, cert_data=CERTIFICATE_LIST)
+
+app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))  

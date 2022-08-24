@@ -1,11 +1,18 @@
 FROM python:3.9
 
-WORKDIR /app
+#Set the working directory
+WORKDIR /
 
-COPY requirements.txt /app/
+#copy all the files
+COPY . .
 
+#Install the dependencies
+RUN apt-get -y update
+RUN apt-get update && apt-get install -y python3 python3-pip
 RUN pip3 install -r requirements.txt
 
-COPY . /app
+#Expose the required port
+EXPOSE 5000
 
-CMD ["gunicorn","app:app","--timeout","9999"]
+#Run the command
+CMD gunicorn app:app --bind 0.0.0.0:5000 --timeout 9999

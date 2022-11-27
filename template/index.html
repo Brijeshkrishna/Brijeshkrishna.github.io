@@ -15,10 +15,10 @@
 <body data-offset="100" data-spy="scroll" data-target="#top-navbar">
 	<div class="container-fluid home" id="home" style="align-items: center;">
 		<div class="background container-fluid"
-			style="background-image:url({{img_id}});width: 100%;height: 100%;background-size: cover;"></div>
+			style="background-image:url('{{img_id}}');width: 100%;height: 100%;background-size: cover;"></div>
 		<div class="container content text-center">
-			<img alt="#" class="rounded-circle mx-auto d-block img-fluid" onmouseover="move()"
-				src="static/imgs/favicon.webp" style="background-color: rgb(43, 39, 39);" onmouseleave="remove()">
+			<img alt="#" class="rounded-circle mx-auto d-block img-fluid" onmouseover="hover_img()"
+				src="static/imgs/favicon.webp" style="background-color: rgb(43, 39, 39);" onmouseleave="hover_off_img()">
 
 			<h1 class="greeting" id="texter" style="font-family: 'Electrolize', sans-serif;"> 👋 Hi , I am
 				<strong>Brijesh</strong></h1>

@@ -1,14 +1,10 @@
-function move() {
-  var apperer = document.getElementById("move");
+function hover_img() {
   var text = document.getElementById("texter");
-  apperer.innerHTML = "I<b> Can't</b> see U 🙈 ";
-  text.innerHTML = " ";
+  text.innerHTML = "I<b> Can't</b> see U 🙈 ";
 }
 
-function remove() {
-  var apperer = document.getElementById("move");
+function hover_off_img() {
   var text = document.getElementById("texter");
-  apperer.innerHTML = "";
   text.innerHTML = "Hi , I am Brijesh";
 }
 

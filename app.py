@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,send_file
 import json
 import os
 from worker import *
@@ -28,3 +28,8 @@ def response():
         img_id = "static/imgs/back.jpg"
 
     return render_template("./index.html", img_id=img_id, cert_data=CERTIFICATE_LIST)
+
+@app.route("/static/imgs/<img_id>")
+def send_img(img_id):
+    print(img_id)
+    return send_file(f"./static/imgs/{img_id}")

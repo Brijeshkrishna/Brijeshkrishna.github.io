@@ -14,10 +14,10 @@ COPY . .
 RUN pip3 install -r requirements.txt
 
 # adding the entrypoint 
-ENTRYPOINT [ "uvicorn" ]
+ENTRYPOINT [ "gunicorn" ]
 
 # runing the application
-CMD ["app:app","--host", "0.0.0.0", "--port", "10000"]
+CMD ["app:app","-b", "0.0.0.0:10000"]
 
 #procfile
 # web: gunicorn app:app 0.0.0.0:$PORT --timeout 99999

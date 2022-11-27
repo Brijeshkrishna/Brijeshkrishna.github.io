@@ -7,6 +7,7 @@ from tqdm import tqdm
 import time
 import dotenv
 import os
+from asgiref.wsgi import WsgiToAsgi
 
 dotenv.load_dotenv()
 
@@ -101,3 +102,4 @@ def response():
 
     return render_template("./index.html", img_id=img_id, cert_data=CERTIFICATE_LIST)
 
+app = WsgiToAsgi(app)

@@ -1,18 +1,16 @@
 FROM python:3.9
 
-#Set the working directory
-WORKDIR /
-
-#copy all the files
-COPY . .
-
-#Install the dependencies
 RUN apt-get -y update
 RUN apt-get update && apt-get install -y python3 python3-pip
+
+WORKDIR /app
+
+COPY . .
+
 RUN pip3 install -r requirements.txt
 
-#Expose the required port
-EXPOSE 5000
+EXPOSE 10000
 
-#Run the command
-CMD gunicorn app:app --bind 0.0.0.0:5000 --timeout 9999
+ENTRYPOINT [ "uvicorn" ]
+
+CMD ["app:app","--host", "0.0.0.0", "--port", "10000"]

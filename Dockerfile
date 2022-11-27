@@ -14,3 +14,6 @@ EXPOSE 10000
 ENTRYPOINT [ "uvicorn" ]
 
 CMD ["app:app","--host", "0.0.0.0", "--port", "10000"]
+
+#procfile
+# web: gunicorn app:app 0.0.0.0:$PORT --timeout 99999

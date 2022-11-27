@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
 
  html {
-   font-family: Electrolize, sans-serif;
+   font-family:  'Electrolize', sans-serif;
    margin: 0;
    font-weight: 400;
    line-height: 1.5;
